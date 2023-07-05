@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+<h1>Inicio</h1>
+
+<a th:href="@{/add}">Create User</a>
+
+<div th:if="${users != null and !users.isEmpty()}">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Date of Birth</th>
+            <th>Gender ID</th>
+            <th>Verified</th>
+            <th>Role ID</th>
+            <th>User Summary</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.userID}">Id</td>
+            <td th:text="${user.userName}">Username</td>
+            <td th:text="${user.userPassword}">Password</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.phone}">Phone</td>
+            <td th:text="${user.dateOfBirth}">Date of Birth</td>
+            <td th:text="${user.genderID}">Gender</td>
+            <td th:text="${user.verified}">Verified</td>
+            <td th:text="${user.roleID}">Role</td>
+            <td th:text="${user.userSummary}">Summary</td>
+            <td><a th:href="@{/edit/} + ${user.userID}" th:text="Edit"/></td>
+            <!--<td><a th:href="@{/delete/} + ${user.userID}" th:text="Delete"/></td>-->
+            <td><a th:href="@{/delete(userID=${user.userID})}" th:text="Delete"/></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${users == null or users.isEmpty()}">
+    User Table is empty.
+</div>
+</body>
+</html>

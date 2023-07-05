@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+</head>
+<body>
+<h1>User profile</h1>
+<a th:href="@{/}">Regresar</a>
+<br/>
+
+<form th:action="@{/save}" method="post" th:object="${user}">
+  <input type="hidden" name="idPersona" th:field="*{userID}">
+  <label for="userName">Name:</label>
+  <input type="text" name="userName" th:field="*{userName}">
+  <br/>
+  <label for="userPassword">Password:</label>
+  <input type="text" name="userPassword" th:field="*{userPassword}">
+  <br/>
+  <label for="email">Email:</label>
+  <input type="text" name="email" th:field="*{email}">
+  <br/>
+  <label for="phone">Phone:</label>
+  <input type="tel" name="phone" th:field="*{phone}">
+  <br/>
+  <label for="dateOfBirth">Date of Birth:</label>
+  <input type="date" name="dateOfBirth" th:field="*{dateOfBirth}">
+  <br/>
+  <label for="genderID">Gender:</label>
+  <input type="int" name="genderID" th:field="*{genderID}">
+  <br/>
+  <label for="verified">verified:</label>
+  <input type="bo" name="verified" th:field="*{verified}">
+  <br/>
+  <label for="roleID">Role id:</label>
+  <input type="int" name="roleID" th:field="*{roleID}">
+  <br/>
+  <label for="userSummary">Summary:</label>
+  <input type="text" name="userSummary" th:field="*{userSummary}">
+  <br/>
+  <input type="submit" name="Save" value="Save">
+</form>
+
+
+</body>
+</html>
