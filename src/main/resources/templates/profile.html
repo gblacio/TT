@@ -14,27 +14,47 @@
   <input type="hidden" name="idPersona" th:field="*{userID}">
   <label for="userName">Name:</label>
   <input type="text" name="userName" th:field="*{userName}">
+  <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Error name </span>
   <br/>
   <label for="userPassword">Password:</label>
   <input type="text" name="userPassword" th:field="*{userPassword}">
+  <span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}">Error Password </span>
   <br/>
   <label for="email">Email:</label>
   <input type="text" name="email" th:field="*{email}">
   <br/>
   <label for="phone">Phone:</label>
   <input type="tel" name="phone" th:field="*{phone}">
+  <span th:if="${#fields.hasErrors('phone')}" class="error">please enter a valid number </span>
   <br/>
+
+
   <label for="dateOfBirth">Date of Birth:</label>
   <input type="date" name="dateOfBirth" th:field="*{dateOfBirth}">
+  <span th:if="${#fields.hasErrors('dateOfBirth')}" class="error">Este campo no puede quedar vacío</span>
   <br/>
+
   <label for="genderID">Gender:</label>
-  <input type="int" name="genderID" th:field="*{genderID}">
+
+  <select id="genderID" name="genderID" th:field="*{genderID}">
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
+
   <br/>
   <label for="verified">verified:</label>
-  <input type="bo" name="verified" th:field="*{verified}">
+    <select id="verified" name="verified" th:field="*{verified}">
+    <option value="false">false</option>
+    <option value="true">true</option>
+  </select>
+
   <br/>
   <label for="roleID">Role id:</label>
-  <input type="int" name="roleID" th:field="*{roleID}">
+  <select id="roleID" name="roleID" th:field="*{roleID}">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
   <br/>
   <label for="userSummary">Summary:</label>
   <input type="text" name="userSummary" th:field="*{userSummary}">
