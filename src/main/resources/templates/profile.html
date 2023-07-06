@@ -6,7 +6,8 @@
   <title>User Profile</title>
 </head>
 <body>
-<h1>User profile</h1>
+<header th:replace="layout/template :: header"></header>
+<h2>User profile</h2>
 <a th:href="@{/}">Regresar</a>
 <br/>
 
@@ -62,6 +63,7 @@
   <input type="submit" name="Save" value="Save">
 </form>
 
+<footer th:replace="layout/template :: footer"></footer>
 
 </body>
 </html>
