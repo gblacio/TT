@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
+<head th:replace="layout/template :: head">
+
   <title>User Profile</title>
 </head>
 <body>
-<h1>User profile</h1>
+<header th:replace="layout/template :: header"></header>
+<h2>User profile</h2>
 <a th:href="@{/}">Regresar</a>
 <br/>
 
@@ -14,20 +15,28 @@
   <input type="hidden" name="idPersona" th:field="*{userID}">
   <label for="userName">Name:</label>
   <input type="text" name="userName" th:field="*{userName}">
+  <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Error name </span>
   <br/>
   <label for="userPassword">Password:</label>
   <input type="text" name="userPassword" th:field="*{userPassword}">
+  <span th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}">Error Password </span>
   <br/>
   <label for="email">Email:</label>
   <input type="text" name="email" th:field="*{email}">
   <br/>
   <label for="phone">Phone:</label>
   <input type="tel" name="phone" th:field="*{phone}">
+  <span th:if="${#fields.hasErrors('phone')}" class="error">please enter a valid number </span>
   <br/>
+
+
   <label for="dateOfBirth">Date of Birth:</label>
   <input type="date" name="dateOfBirth" th:field="*{dateOfBirth}">
+  <span th:if="${#fields.hasErrors('dateOfBirth')}" class="error">Este campo no puede quedar vacío</span>
   <br/>
+
   <label for="genderID">Gender:</label>
+
   <select id="genderID" name="genderID" th:field="*{genderID}">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -35,11 +44,19 @@
 
   <br/>
   <label for="verified">verified:</label>
+
+    <select id="verified" name="verified" th:field="*{verified}">
+    <option value="false">false</option>
+    <option value="true">true</option>
+  </select>
+
+
   <select id="verified" name="verified" th:field="*{verified}">
     <option value="false">false</option>
     <option value="true">true</option>
   </select>
   <!--<input type="bo" name="verified" th:field="*{verified}">-->
+
   <br/>
   <label for="roleID">Role id:</label>
   <select id="roleID" name="roleID" th:field="*{roleID}">
@@ -47,7 +64,9 @@
     <option value="2">2</option>
     <option value="3">3</option>
   </select>
+
   <!--<input type="int" name="roleID" th:field="*{roleID}">-->
+
   <br/>
   <label for="userSummary">Summary:</label>
   <input type="text" name="userSummary" th:field="*{userSummary}">
@@ -55,6 +74,7 @@
   <input type="submit" name="Save" value="Save">
 </form>
 
+<footer th:replace="layout/template :: footer"></footer>
 
 </body>
 </html>

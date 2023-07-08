@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<header th:fragment="header">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+        <a th:href="@{/}" class="navbar-brand" th:text="TravelTogether"></a>
+        <img src="static.images/logo_color.jpg" alt="TravelTogether">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item" px-2> <a th:href="@{/}" class="nav-link active" th:text="Home">Home</a> </li>
+                <li class="nav-item" px-2> <a th:href="@{/}" class="nav-link active" th:text="searchTrip">Search Trip</a> </li>
+                <li class="nav-item" px-2> <a th:href="@{/}" class="nav-link active" th:text="PlanTrip">Plan Trip</a> </li>
+                <li class="nav-item" px-2> <a th:href="@{/}" class="nav-link active" th:text="BecomePremium">Become Premium</a> </li>
+                <li class="nav-item" px-2> <a th:href="@{/}" class="nav-link active" th:text="ContactUs">Contact us</a> </li>
+                <li class="nav-item" px-2> <a th:href="@{/profile}" class="nav-link active" th:text="Profile">Profile</a> </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+</header>
+
+<footer th:fragment="footer">Home . About . Terms of Use . Privacy Policy . Help . Blog . Travel Buddy App</footer>
+
+</body>
+</html>

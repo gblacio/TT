@@ -1,12 +1,19 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="layout/template :: head">
+
     <title>Inicio</title>
 </head>
+
+<body>
+<header th:replace="layout/template :: header"></header>
+
+<h2>Inicio</h2>
+
 <body style="background-color: darkseagreen ">
 <h1>Inicio</h1>
+
 
 <a th:href="@{/add}">Create User</a>
 
@@ -47,5 +54,7 @@
 <div th:if="${users == null or users.isEmpty()}">
     User Table is empty.
 </div>
+
+<footer th:replace="layout/template :: footer"></footer>
 </body>
 </html>
