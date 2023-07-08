@@ -44,10 +44,18 @@
 
   <br/>
   <label for="verified">verified:</label>
+
     <select id="verified" name="verified" th:field="*{verified}">
     <option value="false">false</option>
     <option value="true">true</option>
   </select>
+
+
+  <select id="verified" name="verified" th:field="*{verified}">
+    <option value="false">false</option>
+    <option value="true">true</option>
+  </select>
+  <!--<input type="bo" name="verified" th:field="*{verified}">-->
 
   <br/>
   <label for="roleID">Role id:</label>
@@ -56,6 +64,9 @@
     <option value="2">2</option>
     <option value="3">3</option>
   </select>
+
+  <!--<input type="int" name="roleID" th:field="*{roleID}">-->
+
   <br/>
   <label for="userSummary">Summary:</label>
   <input type="text" name="userSummary" th:field="*{userSummary}">
