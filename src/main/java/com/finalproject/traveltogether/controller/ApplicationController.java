@@ -1,15 +1,16 @@
 package com.finalproject.traveltogether.controller;
 
 import com.finalproject.traveltogether.configuration.PasswordEncoder;
+import com.finalproject.traveltogether.entity.Country;
 import com.finalproject.traveltogether.entity.User;
+import com.finalproject.traveltogether.service.CountryService;
 import com.finalproject.traveltogether.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -27,6 +29,8 @@ public class ApplicationController {
     @Autowired
     private UserService userService;
     private final PasswordEncoder passwordEncoder = new PasswordEncoder();
+    @Autowired
+    private CountryService countryService;
 
     @GetMapping("/")
     public String showHome(){
@@ -101,24 +105,39 @@ public class ApplicationController {
         if (model.containsAttribute("success")) {// If it's present, pass it to the login page
             model.addAttribute("success", true);
         }
-        return "LoginTraveler";
+        return "loginTraveler";
     }
 
     @PostMapping("/travelers/home")
-    public String processLogin(@RequestParam String email, @RequestParam String userPassword, Model model) {
+    public String processLogin(@RequestParam String email, @RequestParam String userPassword, Model model, HttpSession session) {
         User foundUser = userService.findUserByEmail(email);
         if (foundUser != null && passwordEncoder.verify(userPassword,foundUser.getUserPassword())){
              if (foundUser.getRoleID() == 1){
-                 return "travelers";
+                // session.setAttribute("loggedInUser", foundUser);
+                 return "homeTravelers";
              }
              else{
-                 return "travelerserror";
+                 return "errorTravelers";
              }
 
         } else {
             // If the credentials are invalid, return to the login page with an error message
             model.addAttribute("error", "Invalid credentials. Please try again.");
-            return "LoginTraveler";
+            return "loginTraveler";
         }
     }
+
+    @GetMapping("/travelers/logout")
+    public String processLogout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/travelers"; // Redirect to the index page
+    }
+
+    @GetMapping("/travelers/planTrip")
+    public String showPlanTrip(Model model){
+        List<Country> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
+        return "addTripTravelers";
+    }
+
 }

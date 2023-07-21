@@ -113,6 +113,13 @@ ul ol {
     margin-bottom: 0;
 }
 
+/*New*/
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 dt {
     font-weight: 700;
 }
@@ -9516,6 +9523,7 @@ h6,
     color: #212121;
     font-weight: 500;
     outline: none;
+    white-space: nowrap;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -9569,7 +9577,7 @@ h6,
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/carousel-2.jpg), no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(carousel-2.jpg), no-repeat center center;
     background-size: cover;
 }
 
@@ -9639,7 +9647,7 @@ h6,
 }
 
 .bg-registration {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/carousel-1.jpg), no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(carousel-1.jpg), no-repeat center center;
     background-size: cover;
 }
 
@@ -9768,4 +9776,51 @@ h6,
     padding: 0;
     list-style-type: none;
 }
+
+/*-------- Global Loader -------*/
+#global-loader {
+    position: fixed;
+    z-index: 50000;
+    background: var(--white);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loader-svg-img {
+    position: absolute;
+    top: 33%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+    border-radius: 50%;
+    background: url(/style01/img/loader.svg);
+}
+
+.flight-icon {
+    position: absolute;
+    top: 37%;
+    color: var(--white);
+    transform: rotate(45deg);
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    animation: fa-spin 10s infinite linear;
+    width: 78px;
+    height: 78px;
+    display: flex;
+    margin: 0 auto;
+    line-height: 80px;
+    font-size: 1.125rem;
+}
+
 

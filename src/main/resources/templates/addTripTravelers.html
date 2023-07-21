@@ -1,0 +1,162 @@
+<html lang="en">
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Travel Together</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+  <!--Jquery library-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!-- Libraries Stylesheet -->
+  <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+  <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+  <link th:href="@{/css/style01.css}" rel="stylesheet">
+  <script th:href="@{/js/script.js}" defer></script>
+</head>
+
+<body>
+<!--Loader-->
+<div id="global-loader" class="bg-primary">
+  <div class="loader-svg-img">
+    <div class="flight-icon"><i class="fa fa-plane"></i></div>
+  </div>
+</div>
+<!-- Navbar Start -->
+<div class="container-fluid position-relative nav-bar p-0">
+  <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+      <a th:href="@{/travelers/home}" class="navbar-brand">
+        <h1 class="m-0 text-primary"><span class="text-dark">TRAVEL</span>TOGETHER</h1>
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+        <div class="navbar-nav ml-auto py-0">
+          <a th:href="@{/travelers/planTrip}" class="nav-item nav-link active">Plan a trip</a>
+          <a th:href="@{/travelers/searchTrip}" class="nav-item nav-link active">Search a trip</a>
+          <a th:href="@{/travelers/premium}" class="nav-item nav-link active">Become Premium</a>
+          <a th:href="@{/travelers/contactUs}" class="nav-item nav-link active">Contact Us</a>
+          <a th:href="@{/travelers/account}" class="nav-item nav-link active">Account</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Navbar End -->
+<br><br>
+
+<!--Add posts-section-->
+<div class="container-form">
+  <form action="#" class="form">
+    <h1 class="text-center">Create a Trip</h1>
+    <!--Select Destination-->
+    <div class="form-step form-step-active">
+      <div class="input-group">
+        <label for="TripName">Trip Name</label>
+        <input type="text" name="TripName" id="TripName"/>
+      </div>
+      <div class="input-group">
+        <label for="Destination">Destination</label>
+        <select name="Destination" id="Destination">
+          <option th:each="country : ${countries}" th:value="${country.countryID}" th:text="${country.countryName}"></option>
+        </select>
+      </div>
+      <div class="">
+        <a href="#" class="btn btn-next width-30 ml-auto">Next</a>
+      </div>
+    </div>
+    <!--Trip Details-->
+    <div class="form-step form-step-active">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <label for="TripStartDate">Trip Start Date</label>
+              <input placeholder="Trip Start Date" type="date" name="TripStartDate" id="TripStartDate">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <label for="TripEndDate">Trip End Date</label>
+              <input placeholder="Trip Start Date" type="date" name="TripStartDate" id="TripEndDate">
+            </div>
+          </div>
+        </div>
+      <div class="input-group">
+          <label for="Description">Description</label>
+          <textarea name="Description" rows="6" placeholder="Write a brief description about your trip." id="Description"></textarea>
+      </div>
+      <div class="input-group">
+        <label for="Image">Image Upload</label>
+        <input id="Image" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png" multiple>
+      </div>
+      <div class="input-group slider-box">
+        <label for="Budget">Budget</label>
+        <input type="text" id="Budget" readonly>
+        <div id="budget-range" class="slider">
+        </div>
+
+      </div>
+      <div class="">
+        <a href="#" class="btn btn-next width-30 ml-auto">Next</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--/Add posts-section-->
+
+<!-- Back to top -->
+<a href="#top" id="back-to-top" ><i class="fe fe-arrow-up"></i></a>
+
+<!-- JavaScript code to hide the loader after the page is fully loaded-->
+<script>
+  $(window).on('load', function () {
+    // Hide the loader when the page is fully loaded
+    $('#global-loader').fadeOut('slow');
+  });
+</script>
+
+<!-- JavaScript code to upload file-->
+<script>
+  (function($) {
+    //fancyfileuplod
+    $('.fancyuploader').FancyFileUpload({
+      params : {
+        action : 'fileuploader'
+      },
+      maxfilesize : 1000000
+    });
+  })(jQuery);
+</script>
+
+<script type="text/javascript">
+  $(function (){
+    $("#budget-range").slider({
+      step: 500,
+      range: true,
+      min: 0,
+      max: 10000,
+      values: [0, 10000],
+      slide: function (event, ui) {
+        $("#Budget").val(ui.values[0] + " - " + ui.values[1]);
+      }
+    });
+    $("#Budget").val($("#budget-range").slider("values", 0) + " - " + $("#budget-range").slider("values", 1));
+  });
+</script>
+</body>
+</html>

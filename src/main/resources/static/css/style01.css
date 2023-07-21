@@ -1,0 +1,71 @@
+:root{
+    --primary: #7AB730;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+.container-form{
+    display: flex;
+    justify-content: center;
+}
+
+label{
+    display: block;
+    margin-bottom:.5rem;
+}
+
+/*Global Styling*/
+input, select, textarea{
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.width-30{
+    width:30%
+}
+
+.ml-auto{
+    margin-left: auto;
+}
+
+text-center{
+    text-align:center;
+}
+
+/*Form*/
+.form{
+    width: clamp(320px, 30%, 430px);
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+}
+
+.input-group{
+    margin: 2rem 0;
+}
+
+/*Button*/
+
+.btn{
+    padding: 0.75rem;
+    display: block;
+    text-decoration: none;
+    background-color:var(--primary);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary);
+}
