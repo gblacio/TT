@@ -42,6 +42,10 @@ public class ApplicationController {
         return "indexTraveler";
     }
 
+    @GetMapping("/travelers/about")
+    public String showAboutPage(){ return "aboutTravelers";
+    }
+
     @GetMapping("/travelers/register")
     public String showRegisterTraveler(Model model){//If there is no new user object, the page of register, we will not be able to add any attributes later on.
         model.addAttribute("user", new User()); // Add the "user" object to the model
