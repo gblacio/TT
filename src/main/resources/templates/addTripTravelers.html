@@ -104,11 +104,14 @@
         <input id="Image" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png" multiple>
       </div>
       <div class="input-group slider-box">
-        <label for="Budget">Budget</label>
-        <input type="text" id="Budget" readonly>
-        <div id="budget-range" class="slider">
+        <label>Budget</label>
+        <div class="slider-container">
+          <label for="minRange">Min Range:</label>
+          <input type="number" id="minRange" value="0" min="0" max="10000">
+          <label for="maxRange">Max Range:</label>
+          <input type="number" id="maxRange" value="10000" min="0" max="10000">
+          <div id="slider"></div>
         </div>
-
       </div>
       <div class="">
         <a href="#" class="btn btn-next width-30 ml-auto">Next</a>
@@ -144,18 +147,44 @@
 </script>
 
 <script type="text/javascript">
-  $(function (){
-    $("#budget-range").slider({
-      step: 500,
+  // Initialize the range slider
+  $(function() {
+    let minRange = 0;
+    let maxRange = 10000;
+
+    $("#slider").slider({
       range: true,
       min: 0,
       max: 10000,
-      values: [0, 10000],
-      slide: function (event, ui) {
-        $("#Budget").val(ui.values[0] + " - " + ui.values[1]);
+      values: [minRange, maxRange],
+      slide: function(event, ui) {
+        $("#minRange").val(ui.values[0]);
+        $("#maxRange").val(ui.values[1]);
       }
     });
-    $("#Budget").val($("#budget-range").slider("values", 0) + " - " + $("#budget-range").slider("values", 1));
+
+    // Update slider values when the input values change
+    $("#minRange").on("change", function() {
+      let value = parseInt($(this).val());
+      let maxVal = parseInt($("#maxRange").val());
+      if (value >= 0 && value <= 10000 && value <= maxVal) {
+        minRange = value;
+        $("#slider").slider("values", 0, value);
+      } else {
+        $(this).val(minRange);
+      }
+    });
+
+    $("#maxRange").on("change", function() {
+      let value = parseInt($(this).val());
+      let minVal = parseInt($("#minRange").val());
+      if (value >= 0 && value <= 10000 && value >= minVal) {
+        maxRange = value;
+        $("#slider").slider("values", 1, value);
+      } else {
+        $(this).val(maxRange);
+      }
+    });
   });
 </script>
 </body>
